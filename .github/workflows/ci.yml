@@ -92,7 +92,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::673044266492:role/HabotConnect-GitHub-Actions-Role
           aws-region: ap-south-1
-            - name: Deploy to AWS EC2 using SSM
+      - name: Deploy to AWS EC2 using SSM
         run: |
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids "i-0703ebf369be19957" \
