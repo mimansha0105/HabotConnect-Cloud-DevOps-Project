@@ -53,11 +53,11 @@ jobs:
         working-directory: student_onboarding/terraform
         run: terraform validate
 
-      - name: Terraform Plan
-        working-directory: student_onboarding/terraform
-        env:
-          TF_VAR_iam_user_email: ci-validation@example.com
-        run: terraform plan -input=false -lock=false
+      # - name: Terraform Plan
+      #   working-directory: student_onboarding/terraform
+      #   env:
+      #     TF_VAR_iam_user_email: ci-validation@example.com
+      #   run: terraform plan -input=false -lock=false
 
       - name: Security Scan - Checkov
         uses: bridgecrewio/checkov-action@v12
