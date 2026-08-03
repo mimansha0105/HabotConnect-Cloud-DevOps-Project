@@ -93,12 +93,7 @@ jobs:
             sudo docker pull mimansha0501/habotconnect:v1
             sudo docker stop habotconnect-app || true
             sudo docker rm habotconnect-app || true
-            sudo docker run -d \
-          --name habotconnect-app \
-              --restart unless-stopped \
-              -p 8000:8000 \
-              mimansha0501/habotconnect:v1
-            sudo docker image prune -f
+            sudo docker run -d --name habotconnect-app --restart unless-stopped -p 8000:8000 mimansha0501/habotconnect:v1
 
       - name: Secret Scan - Gitleaks
         uses: gitleaks/gitleaks-action@v2
