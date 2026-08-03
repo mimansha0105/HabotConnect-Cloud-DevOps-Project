@@ -1,9 +1,5 @@
 # HabotConnect Cloud DevOps Automation Project
 
-**Candidate:** Mimansha Singh  
-**Contact:** [Add your email address]  
-**GitHub Repository:** [Add repository URL]
-
 ---
 
 ## 1. Project Overview
