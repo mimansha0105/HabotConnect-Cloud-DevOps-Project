@@ -61,6 +61,10 @@ jobs:
           soft_fail: false
           skip_check: CKV_GCP_80,CKV_GCP_81,CKV_GCP_62
 
+      - name: Remove Checkov SARIF file
+        if: always()
+        run: sudo rm -f results.sarif
+        
       - name: Secret Scan - Gitleaks
         uses: gitleaks/gitleaks-action@v2
         env:
