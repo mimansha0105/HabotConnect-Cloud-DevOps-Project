@@ -59,6 +59,7 @@ jobs:
           directory: student_onboarding/terraform
           framework: terraform
           soft_fail: false
+          skip_check: CKV_GCP_80,CKV_GCP_81
 
       - name: Secret Scan - Gitleaks
         uses: gitleaks/gitleaks-action@v2

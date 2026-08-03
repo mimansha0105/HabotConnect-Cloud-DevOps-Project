@@ -19,6 +19,28 @@ provider "google" {
   region  = var.region
 }
 
+# Dedicated bucket for Cloud Storage access logs
+resource "google_storage_bucket" "access_logs" {
+  name     = "habotconnect-access-logs-2026"
+  location = var.region
+
+  uniform_bucket_level_access = true
+  public_access_prevention    = "enforced"
+
+  versioning {
+    enabled = true
+  }
+
+  lifecycle_rule {
+    condition {
+      age = 90
+    }
+
+    action {
+      type = "Delete"
+    }
+  }
+}
 
 # ---------------------------------------------------------
 # D0 Raw Landing - Google Cloud Storage
@@ -33,6 +55,12 @@ resource "google_storage_bucket" "d0_raw_landing" {
 
   # Prevent accidental public exposure.
   public_access_prevention = "enforced"
+
+    # Send access logs to the dedicated logging bucket.
+  logging {
+    log_bucket        = google_storage_bucket.access_logs.name
+    log_object_prefix = "d0-raw-access-logs"
+  }
 
   # Keep previous versions of objects.
   versioning {
