@@ -56,7 +56,7 @@ resource "google_storage_bucket" "d0_raw_landing" {
   # Prevent accidental public exposure.
   public_access_prevention = "enforced"
 
-    # Send access logs to the dedicated logging bucket.
+  # Send access logs to the dedicated logging bucket.
   logging {
     log_bucket        = google_storage_bucket.access_logs.name
     log_object_prefix = "d0-raw-access-logs"
