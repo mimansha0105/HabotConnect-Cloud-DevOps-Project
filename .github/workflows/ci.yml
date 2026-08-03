@@ -87,11 +87,15 @@ jobs:
       - name: Push Docker Image
         run: docker push mimansha0501/habotconnect:v1
 
+      - name: Debug GitHub OIDC claims
+        uses: github/actions-oidc-debugger@main
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::673044266492:role/HabotConnect-GitHub-Actions-Role
           aws-region: ap-south-1
+
       - name: Deploy to AWS EC2 using SSM
         run: |
           COMMAND_ID=$(aws ssm send-command \
@@ -101,7 +105,7 @@ jobs:
             --query "Command.CommandId" \
             --output text)
 
-          echo "SSM Command ID: $COMMAND_ID"
+        echo "SSM Command ID: $COMMAND_ID"
 
           aws ssm wait command-executed \
             --command-id "$COMMAND_ID" \
